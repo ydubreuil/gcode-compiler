@@ -1,0 +1,4 @@
+H DX=50 DY=50 DZ=19 -AB R50 /DEF
+*BASE PIED VERIN                   
+B X=0 Y=80 Z=14 V2 T1 
+B X=0 Y=480 Z=14 V2 T1 

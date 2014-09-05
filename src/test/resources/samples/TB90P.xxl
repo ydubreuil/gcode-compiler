@@ -1,0 +1,7 @@
+H DX=50 DY=50 DZ=19 -AB R50 /DEF
+*                                  
+S /BP X=61 Y=0 Z=0
+S /BP X=431 Y=0 Z=0
+S /BP X=801 Y=0 Z=0
+N X=1200 V9
+N X=1200 V9

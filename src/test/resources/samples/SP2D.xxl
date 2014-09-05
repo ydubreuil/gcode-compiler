@@ -1,0 +1,6 @@
+H DX=50 DY=50 DZ=19 -DA R50 /DEF
+*                                  
+S /2D X=332 Y=0
+S /2D X=872 Y=0
+S /2D X=1412 Y=0
+N X=1000 V9

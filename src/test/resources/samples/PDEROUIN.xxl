@@ -1,0 +1,21 @@
+H DX=597 DY=397 DZ=20 -AD R50 /DEF
+*                                  
+G0 X=70 Y=70 Z=3 V4 S16000 T44 
+SX1
+G1 X=70 V6
+SY1
+G1 Y=70
+SX0
+G1 X=70
+SY0
+G1 Y=70
+G0 X=-5 Y=-5 Z=4 V9 S16000 T44 
+SY1
+G1 Y=-5 V6
+SX1
+G1 X=-5
+SY0
+G1 Y=-5
+SX0
+G1 X=-5
+N X=1500 V9

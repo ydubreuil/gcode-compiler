@@ -1,0 +1,4 @@
+H DX=50 DY=50 DZ=19 -AB R50 /DEF
+*                                  
+B X=0 Y=20 Z=14 V2 T5 
+B X=0 Y=52 Z=14 V2 T5 

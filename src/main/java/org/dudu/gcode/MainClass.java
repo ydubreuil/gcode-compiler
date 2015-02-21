@@ -49,8 +49,12 @@ public class MainClass {
 		}
 
 		try (FileOutputStream fout = new FileOutputStream(outFile)) {
-			fout.write(Compiler.parse(new FileInputStream(inFile)));
-		}
+            try {
+                fout.write(Compiler.parse(new FileInputStream(inFile)));
+            } catch (CompilerException e) {
+                e.printError();
+            }
+        }
 	}
 
 	static void decompile(String inFile, String outFileArg) throws IOException {

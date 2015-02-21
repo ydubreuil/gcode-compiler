@@ -114,6 +114,9 @@ public class CommandDescriptor {
 				while(!remainingContent.trim().startsWith((currentField = fieldIterator.next()).getFieldName())) {
 					skippedSize += currentField.getSize();
 					currentFieldId++;
+                    if (!fieldIterator.hasNext()) {
+                        throw new IllegalArgumentException("Unable to parse this: " + remainingContent);
+                    }
 				}
 			}
 

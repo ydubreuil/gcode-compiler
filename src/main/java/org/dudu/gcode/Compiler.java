@@ -26,25 +26,25 @@ package org.dudu.gcode;
  * #L%
  */
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Compiler {
-	public static byte[] parse(InputStream program) throws IOException {
+	public static byte[] parse(InputStream program) throws IOException, CompilerException {
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 
 		try (
 				InputStreamReader is = new InputStreamReader(program);
-				BufferedReader br = new BufferedReader(is)) {
+                LineNumberReader br = new LineNumberReader(is)) {
 
 			String line;
 			while ((line = br.readLine()) != null) {
 				CommandDescriptor candidateCommand = null;
 				int candidateCommandLength = 0;
 
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+                
 				for (CommandDescriptor c : GCodeCommand.lookupTable.values()) {
 					if (line.startsWith(c.getName())
 							&& c.getName().length() > candidateCommandLength) {
@@ -54,9 +54,13 @@ public class Compiler {
 				}
 				
 				if (candidateCommand != null) {
-					outStream.write(candidateCommand.encode(line.substring(candidateCommandLength)));
+                    try {
+                        outStream.write(candidateCommand.encode(line.substring(candidateCommandLength)));
+                    } catch (Exception e) {
+                        throw new CompilerException(br.getLineNumber(), line, e);
+                    }
 				} else {
-					throw new IllegalArgumentException("Unparsable line :" + line);
+					throw new CompilerException(br.getLineNumber(), line, "Unknown command");
 				}
 			}
 		}
